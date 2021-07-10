@@ -1,0 +1,2 @@
+[h_gcplap]
+192.168.101.11 ansible_user=gpc ansible_become=yes ansible_python_interpreter=/usr/bin/python3 ansible_ssh_private_key_file=~/.ssh/id_gpclap ansible_sudo_pass=qwerty

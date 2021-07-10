@@ -1,0 +1,22 @@
+- block:
+  - name: Add docker engine GPG key for ubuntu
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Add docker engine bionic repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ubuntu_version}} stable
+      filename: docker_ce
+      state: present
+
+
+  - name: Install Docker Community Edition...
+    apt:
+      name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+
+  - name: Add user to docker group
+    user:
+      name: "{{docker_user}}"
+      append: yes
+      groups: docker

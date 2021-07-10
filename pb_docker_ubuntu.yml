@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: True
+
+  pre_tasks:
+    - debug: msg='Starting docker setup playbook...'
+
+  post_tasks:
+    - debug: msg='Finished docker setup playbook...'
+
+  roles:
+    - { role: ubuntu_base, tags: 'r_base' }
+    - { role: docker_ubuntu , docker_user: "{{ansible_user}}",ubuntu_version: "focal", tags: 'r_docker' }
+    - { role: jenkins, tags: 'r_jenkins' }

@@ -1,0 +1,18 @@
+- block:
+  - name: Update source.list
+    apt:
+      update_cache: yes
+      cache_valid_time: 900
+
+  - name: Install base packages...
+    apt:
+      name: ['python3-virtualenv','apt-transport-https', 'software-properties-common', 'ca-certificates','gnupg-agent', 'curl', 'man', 'gnupg2', 'build-essential',
+            'git','vim', 'htop', 'lsof', 'dstat', 'strace', 'tmux', 'python3-pip', 'unzip', 'screen', 'aptitude', 'bmon', 'nmon','openssh-server','wget','mlocate','rsync','pigz','unrar']
+
+  - name: vim config file
+    template:
+      src: templates/vimrc
+      dest: "/etc/vim/vimrc"
+      owner: "{{ansible_user}}"
+      group: "{{ansible_user}}"
+      mode: 0755
